@@ -1,0 +1,41 @@
+.App {
+  padding: 2rem;
+}
+
+.tree-node {
+  margin-left: 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+.tree-node .node-content {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.tree-node .node-content .toggle {
+  width: 20px;
+  text-align: center;
+  margin-right: 5px;
+}
+
+.tree-node .node-content a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s ease-in-out;
+}
+
+.tree-node .node-content a:hover {
+  color: #007bff;
+}
+
+.tree-node .children {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.tree-node .children.open {
+  max-height: none; /* Adjust as needed */
+}

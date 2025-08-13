@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import type { SchemaNode } from './Schema';
+import './App.css';
 
 const TreeNode: React.FC<{
   node: SchemaNode;
@@ -15,26 +16,24 @@ const TreeNode: React.FC<{
   };
 
   return (
-    <div style={{ marginLeft: '20px' }}>
-      <div>
-        <span onClick={handleToggle} style={{ cursor: 'pointer' }}>
-          {node.hasChildren ? (isOpen ? '[-]' : '[+]') : '•'}{' '}
+    <div className="tree-node">
+      <div className="node-content">
+        <span className="toggle" onClick={handleToggle}>
+          {node.hasChildren ? (isOpen ? '[-]' : '[+]') : '•'}
         </span>
         <a href={`https://datacommons.org/browser/${node.name}`} target="_blank" rel="noopener noreferrer">
           {node.name}
         </a>
       </div>
-      {isOpen && (
-        <div>
-          {node.children.map((child) => (
-            <TreeNode
-              key={child.name}
-              node={child}
-              onNodeToggle={onNodeToggle}
-            />
-          ))}
-        </div>
-      )}
+      <div className={`children ${isOpen ? 'open' : ''}`}>
+        {node.children.map((child) => (
+          <TreeNode
+            key={child.name}
+            node={child}
+            onNodeToggle={onNodeToggle}
+          />
+        ))}
+      </div>
     </div>
   );
 };
@@ -107,7 +106,7 @@ const App: React.FC = () => {
   }
 
   return (
-    <div>
+    <div className="App">
       <h1>Data Commons Schema Visualizer</h1>
       <TreeNode node={schema} onNodeToggle={handleNodeToggle} />
     </div>
